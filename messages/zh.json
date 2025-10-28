@@ -47,7 +47,9 @@
     "error": "发送询价申请失败，请重试。",
     "productName": "产品",
     "quantity": "数量",
-    "remove": "移除"
+    "remove": "移除",
+    "uploadImage": "上传参考图片",
+    "uploadImageDesc": "分享灵感图片，帮助我们了解您想要的风格"
   },
   "search": {
     "placeholder": "搜索产品...",
@@ -66,7 +68,12 @@
     "generating": "正在使用AI生成产品信息...",
     "review": "审核和编辑",
     "save": "保存产品",
-    "cancel": "取消"
+    "cancel": "取消",
+    "batchUpload": "批量上传",
+    "aiTemplate": "AI 模板",
+    "emailConfig": "邮箱配置",
+    "productManagement": "产品管理",
+    "viewQuotes": "查看询价"
   },
   "footer": {
     "copyright": "© 2024 金属工艺品。保留所有权利。",

@@ -1,9 +1,10 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n/request';
+import { locales, type Locale } from '@/i18n/request';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
+import { loadLocaleMessages } from '@/i18n/messages';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -18,15 +19,15 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   // 验证 locale
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
   // 设置请求上下文中的语言环境，确保静态渲染时可以正确识别当前语言
   setRequestLocale(locale);
 
-  // 显式传入 locale 获取文案，避免在静态构建时依赖请求头
-  const messages = await getMessages({ locale });
+  // 使用按语言拆分的静态导入，彻底避免运行时从请求头解析 locale
+  const messages = await loadLocaleMessages(locale as Locale);
 
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>

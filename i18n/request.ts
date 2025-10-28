@@ -16,6 +16,8 @@ export default getRequestConfig(async ({ locale }) => {
   if (!locales.includes(locale as Locale)) notFound();
 
   return {
+    // 显式返回 locale，避免后续版本的 next-intl 报告缺失
+    locale,
     messages: (await import(`../messages/${locale}.json`)).default
   };
 });
