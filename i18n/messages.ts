@@ -1,17 +1,20 @@
-import type { AbstractIntlMessages } from 'next-intl';
 import { type Locale } from './request';
 
-const loaders: Record<Locale, () => Promise<AbstractIntlMessages>> = {
+export interface Messages {
+  [key: string]: string | Messages;
+}
+
+const loaders: Record<Locale, () => Promise<Messages>> = {
   en: async () => (await import('@/messages/en.json')).default,
   zh: async () => (await import('@/messages/zh.json')).default,
   ar: async () => (await import('@/messages/ar.json')).default
 };
 
-export async function loadLocaleMessages(locale: Locale): Promise<AbstractIntlMessages> {
+export async function loadLocaleMessages(locale: Locale): Promise<Messages> {
   return loaders[locale]();
 }
 
-export function createStaticTranslator(messages: AbstractIntlMessages) {
+export function createStaticTranslator(messages: Messages) {
   return (key: string): string => {
     const segments = key.split('.');
     let value: unknown = messages;

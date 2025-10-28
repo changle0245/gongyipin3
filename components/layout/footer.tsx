@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n/translation-context';
 
 interface FooterProps {
   locale: string;
