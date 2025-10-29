@@ -1,3 +1,5 @@
 {
-  "regions": ["hkg1"]
+  "regions": ["hkg1"],
+  "buildCommand": "npm run build",
+  "outputDirectory": ".vercel/output"
 }

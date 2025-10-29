@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { loadLocaleMessages } from '@/i18n/messages';
 import { TranslationsProvider } from '@/i18n/translation-context';
-import '../globals.css';
+import '../../globals.css';
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
