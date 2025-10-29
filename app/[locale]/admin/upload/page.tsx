@@ -1,15 +1,19 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { useTranslations, useLocale } from '@/i18n/translation-context';
+import { useTranslations } from '@/i18n/translation-context';
+import type { Locale } from '@/i18n/request';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Upload, X, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { AIGeneratedProduct } from '@/lib/types';
+
+type AdminUploadPageProps = {
+  params: { locale: Locale };
+};
 
 interface UploadedImage {
   file: File;
@@ -19,9 +23,8 @@ interface UploadedImage {
   error?: string;
 }
 
-export default function AdminUploadPageClient() {
+export default function AdminUploadPage({ params: { locale } }: AdminUploadPageProps) {
   const t = useTranslations();
-  const locale = useLocale();
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [autoPublish, setAutoPublish] = useState(true);
   const [uploading, setUploading] = useState(false);
@@ -226,131 +229,140 @@ export default function AdminUploadPageClient() {
                 )}
               </CardContent>
             </Card>
-          </div>
 
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Upload Status</CardTitle>
-                <CardDescription>Track AI processing progress</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {images.length === 0 && (
-                  <p className="text-sm text-zinc-500 text-center">
-                    No images uploaded yet
-                  </p>
-                )}
-
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="p-4 border border-zinc-200 rounded-lg relative"
-                  >
-                    <button
-                      onClick={() => removeImage(index)}
-                      className="absolute top-2 right-2 text-zinc-400 hover:text-zinc-600"
-                      aria-label="Remove image"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-
-                    <div className="flex gap-4">
-                      <div className="w-20 h-20 bg-zinc-100 rounded-lg overflow-hidden">
-                        <img
-                          src={image.preview}
-                          alt={`Uploaded preview ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      <div className="flex-1 space-y-2">
-                        <div className="flex items-center gap-2">
-                          <Badge
-                            variant={
-                              image.status === 'success'
-                                ? 'default'
-                                : image.status === 'error'
-                                  ? 'destructive'
-                                  : 'secondary'
-                            }
-                          >
-                            {image.status === 'pending' && 'Pending'}
-                            {image.status === 'processing' && 'Processing'}
-                            {image.status === 'success' && 'Completed'}
-                            {image.status === 'error' && 'Failed'}
-                          </Badge>
-                          {image.status === 'processing' && (
-                            <Loader2 className="w-4 h-4 animate-spin text-zinc-400" />
-                          )}
-                          {image.status === 'success' && (
-                            <CheckCircle className="w-4 h-4 text-emerald-500" />
-                          )}
-                          {image.status === 'error' && (
-                            <AlertCircle className="w-4 h-4 text-red-500" />
-                          )}
-                        </div>
-
-                        {image.aiData && (
-                          <div className="space-y-2">
-                            <p className="font-medium">{image.aiData.name[locale]}</p>
-                            <p className="text-sm text-zinc-500">
-                              {image.aiData.description[locale]}
-                            </p>
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div>
-                                <span className="text-zinc-500">Category:</span>{' '}
-                                {image.aiData.category}
-                              </div>
-                              <div>
-                                <span className="text-zinc-500">Price:</span>{' '}
-                                ${image.aiData.specifications.price}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-
-                        {image.error && (
-                          <p className="text-sm text-red-500">{image.error}</p>
-                        )}
-                      </div>
+            {images.length > 0 && (
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                {images.map((img, index) => (
+                  <div key={index} className="relative group">
+                    <div className="aspect-square rounded-lg overflow-hidden border-2 border-zinc-200">
+                      <img
+                        src={img.preview}
+                        alt={`Upload ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
+
+                    <div className="absolute top-2 left-2">
+                      {img.status === 'pending' && (
+                        <Badge variant="secondary">Pending</Badge>
+                      )}
+                      {img.status === 'processing' && (
+                        <Badge className="bg-blue-500">
+                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                          Processing
+                        </Badge>
+                      )}
+                      {img.status === 'success' && (
+                        <Badge className="bg-green-500">
+                          <CheckCircle className="w-3 h-3 mr-1" />
+                          Success
+                        </Badge>
+                      )}
+                      {img.status === 'error' && (
+                        <Badge variant="destructive">
+                          <AlertCircle className="w-3 h-3 mr-1" />
+                          Error
+                        </Badge>
+                      )}
+                    </div>
+
+                    {img.status === 'pending' && (
+                      <button
+                        onClick={() => removeImage(index)}
+                        className="absolute top-2 right-2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    )}
+
+                    {img.aiData && (
+                      <div className="mt-3 space-y-1 text-sm">
+                        <p className="font-semibold">{img.aiData.name[locale]}</p>
+                        <p className="text-zinc-600">
+                          {img.aiData.description[locale]}
+                        </p>
+                        <div className="grid grid-cols-2 gap-2">
+                          <span className="text-zinc-500">Category: {img.aiData.category}</span>
+                          <span className="text-zinc-500">Price: ${img.aiData.specifications.price}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {img.error && (
+                      <p className="mt-2 text-sm text-red-500">{img.error}</p>
+                    )}
                   </div>
                 ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <Card>
+              <CardHeader>
+                <CardTitle>How it works</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm">
+                <div>
+                  <h4 className="font-medium mb-1">1. Upload Images</h4>
+                  <p className="text-zinc-600">
+                    Drag & drop or click to select multiple product images
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">2. AI Processing</h4>
+                  <p className="text-zinc-600">
+                    AI analyzes each image and generates product information in 3 languages
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">3. Auto Publish</h4>
+                  <p className="text-zinc-600">
+                    Products are published immediately (you can edit later)
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-1">4. AI Learning</h4>
+                  <p className="text-zinc-600">
+                    AI learns from your edits to improve future generations
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="mt-6">
               <CardHeader>
-                <CardTitle>AI Assistant Tips</CardTitle>
-                <CardDescription>Maximize generation quality</CardDescription>
+                <CardTitle>Statistics</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-sm text-zinc-600">
-                <div>
-                  <p className="font-medium text-zinc-900">Image quality</p>
-                  <p>Use high-resolution images with good lighting for best results.</p>
+              <CardContent className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-zinc-600">Total:</span>
+                  <span className="font-medium">{images.length}</span>
                 </div>
-                <div>
-                  <p className="font-medium text-zinc-900">Product details</p>
-                  <p>Provide multiple angles to help AI understand the product better.</p>
+                <div className="flex justify-between">
+                  <span className="text-zinc-600">Pending:</span>
+                  <span className="font-medium">
+                    {images.filter((img) => img.status === 'pending').length}
+                  </span>
                 </div>
-                <div>
-                  <p className="font-medium text-zinc-900">Auto publish</p>
-                  <p>You can review generated products before publishing by turning this off.</p>
+                <div className="flex justify-between">
+                  <span className="text-zinc-600">Processing:</span>
+                  <span className="font-medium text-blue-600">
+                    {images.filter((img) => img.status === 'processing').length}
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Generated Description</CardTitle>
-                <CardDescription>Review and edit before publishing</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Textarea
-                  placeholder="AI generated description will appear here"
-                  className="min-h-[120px]"
-                  readOnly
-                />
+                <div className="flex justify-between">
+                  <span className="text-zinc-600">Success:</span>
+                  <span className="font-medium text-green-600">
+                    {images.filter((img) => img.status === 'success').length}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-zinc-600">Failed:</span>
+                  <span className="font-medium text-red-600">
+                    {images.filter((img) => img.status === 'error').length}
+                  </span>
+                </div>
               </CardContent>
             </Card>
           </div>
