@@ -18,22 +18,22 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-zinc-900 text-zinc-300">
+    <footer className="bg-gradient-to-br from-[#5c3b00] via-[#7a4c00] to-[#3d2900] text-[#ffe8b8]">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {/* Company Info */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
-              Metal Crafts
+            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
+              Golden Crafts
             </h3>
-            <p className="text-sm mb-4">
+            <p className="mb-4 text-sm">
               {t('home.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
+            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
               {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
@@ -41,7 +41,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-white transition-colors"
+                    className="text-sm text-[#ffe8b8] transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -52,10 +52,10 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">
+            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
               {t('footer.contact')}
             </h3>
-            <div className="text-sm space-y-2">
+            <div className="space-y-2 text-sm">
               <p>Email: info@metalcrafts.com</p>
               <p>WeChat: metalcrafts</p>
               <p>WhatsApp: +86 123 4567 8900</p>
@@ -63,7 +63,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 mt-8 pt-8 text-center text-sm">
+        <div className="mt-8 border-t border-[#8a5b00] pt-8 text-center text-sm text-[#ffe8b8]">
           <p>{t('footer.copyright')}</p>
         </div>
       </div>

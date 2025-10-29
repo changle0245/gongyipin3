@@ -24,25 +24,25 @@ export default async function HomePage({ params: { locale } }: { params: { local
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white py-20">
+      <section className="bg-gradient-to-br from-[#f9e39a] via-[#f4c36a] to-[#d6960b] py-20 text-[#422d00]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="mb-6 text-4xl font-bold md:text-5xl text-[#3f2c00]">
               {t('home.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-300 mb-4">
+            <p className="mb-4 text-xl text-[#6b4700] md:text-2xl">
               {t('home.subtitle')}
             </p>
-            <p className="text-lg text-zinc-400 mb-8">
+            <p className="mb-8 text-lg text-[#7a5b00]">
               {t('home.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="bg-white text-zinc-900 hover:bg-zinc-100">
+              <Button size="lg" asChild className="bg-white text-[#7a4c00] hover:bg-[#fff5d4]">
                 <Link href={`/${locale}/products`}>
                   {t('common.products')}
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" asChild className="border-white text-[#422d00] hover:bg-white/30">
                 <Link href={`/${locale}/contact`}>
                   {t('common.contact')}
                 </Link>
@@ -53,11 +53,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-zinc-50">
+      <section className="bg-[#fff5dc]/80 py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{t('home.browseByCategory')}</h2>
-            <p className="text-zinc-600">{t('home.allCategories')}</p>
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-[#4b3600]">{t('home.browseByCategory')}</h2>
+            <p className="text-[#8a5b00]">{t('home.allCategories')}</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -67,14 +67,14 @@ export default async function HomePage({ params: { locale } }: { params: { local
                 href={`/${locale}/category/${category.slug}`}
                 className="group"
               >
-                <div className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow border border-zinc-200">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-zinc-100 rounded-full flex items-center justify-center group-hover:bg-zinc-900 transition-colors">
-                    <span className="text-2xl group-hover:text-white">🏺</span>
+                <div className="rounded-2xl border border-[#f3c572] bg-white/90 p-6 text-center transition-shadow hover:shadow-xl">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff0c9] text-2xl text-[#c2932a] transition-all group-hover:bg-[#d6960b] group-hover:text-white">
+                    🏺
                   </div>
-                  <h3 className="font-semibold mb-2">
+                  <h3 className="mb-2 font-semibold text-[#4b3600]">
                     {category.name[locale as 'en' | 'zh' | 'ar']}
                   </h3>
-                  <p className="text-sm text-zinc-600 line-clamp-2">
+                  <p className="text-sm text-[#8a5b00] line-clamp-2">
                     {category.description[locale as 'en' | 'zh' | 'ar']}
                   </p>
                 </div>
@@ -87,10 +87,10 @@ export default async function HomePage({ params: { locale } }: { params: { local
       {/* Featured Products Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-8 flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold mb-2">{t('home.featuredProducts')}</h2>
-              <p className="text-zinc-600">
+              <h2 className="mb-2 text-3xl font-bold text-[#4b3600]">{t('home.featuredProducts')}</h2>
+              <p className="text-[#8a5b00]">
                 {products.length}+ {t('common.products')}
               </p>
             </div>
@@ -102,7 +102,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           </div>
 
           {featuredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {featuredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -114,11 +114,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="text-zinc-400 mb-4">
+              <div className="mb-4 text-[#e5b347]">
                 <Search className="w-16 h-16 mx-auto" />
               </div>
-              <p className="text-zinc-600">No products available yet</p>
-              <p className="text-sm text-zinc-500 mt-2">
+              <p className="text-[#7a5b00]">No products available yet</p>
+              <p className="mt-2 text-sm text-[#8a5b00]">
                 Upload products through the admin panel to get started
               </p>
             </div>
@@ -127,15 +127,15 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-zinc-900 text-white">
+      <section className="bg-gradient-to-br from-[#5c3b00] via-[#7a4c00] to-[#3d2900] py-16 text-[#ffe8b8]">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="mb-4 text-3xl font-bold text-[#ffd36b]">
             Ready to Start Your Order?
           </h2>
-          <p className="text-zinc-300 mb-8 max-w-2xl mx-auto">
+          <p className="mx-auto mb-8 max-w-2xl text-[#ffe8b8]">
             Contact us today for a free quote. We&apos;re here to help you find the perfect metal craft products for your needs.
           </p>
-          <Button size="lg" asChild className="bg-white text-zinc-900 hover:bg-zinc-100">
+          <Button size="lg" asChild className="bg-[#ffd36b] text-[#3d2900] hover:bg-[#f4c36a]">
             <Link href={`/${locale}/quote`}>
               Request a Quote
             </Link>

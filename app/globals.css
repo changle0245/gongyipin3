@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 43 100% 96%;
+    --foreground: 35 100% 15%;
+    --card: 43 100% 98%;
+    --card-foreground: 32 96% 18%;
+    --popover: 45 96% 95%;
+    --popover-foreground: 32 96% 18%;
+    --primary: 38 90% 46%;
+    --primary-foreground: 43 100% 97%;
+    --secondary: 45 92% 88%;
+    --secondary-foreground: 32 96% 24%;
+    --muted: 45 84% 92%;
+    --muted-foreground: 35 64% 32%;
+    --accent: 45 84% 90%;
+    --accent-foreground: 28 76% 22%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 43 84% 80%;
+    --input: 43 84% 80%;
+    --ring: 38 90% 46%;
     --radius: 0.5rem;
   }
 }
@@ -32,7 +32,11 @@
     border-color: hsl(var(--border));
   }
   body {
-    @apply bg-white text-zinc-900;
+    @apply bg-[#fff7e1] text-[#3f2c00];
+    background-image: radial-gradient(circle at 20% 20%, rgba(255, 225, 161, 0.6), transparent 55%),
+      radial-gradient(circle at 80% 0%, rgba(255, 196, 102, 0.4), transparent 45%),
+      linear-gradient(180deg, rgba(255, 248, 221, 0.8), rgba(255, 239, 191, 0.9));
+    background-attachment: fixed;
   }
 }
 

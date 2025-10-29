@@ -31,6 +31,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
       <Button
         variant="ghost"
         size="icon"
+        className="text-[#5c3b00] hover:bg-[#fbe7b2]"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Globe className="h-5 w-5" />
@@ -45,17 +46,17 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
           />
 
           {/* Dropdown */}
-          <div className="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+          <div className="absolute right-0 z-50 mt-2 w-40 rounded-xl border border-[#f3c572] bg-white/95 shadow-xl backdrop-blur">
             <div className="py-1">
               {locales.map((locale) => (
                 <button
                   key={locale}
                   onClick={() => switchLocale(locale)}
                   className={cn(
-                    'block w-full text-left px-4 py-2 text-sm transition-colors',
+                    'block w-full px-4 py-2 text-left text-sm transition-colors',
                     currentLocale === locale
-                      ? 'bg-zinc-100 text-zinc-900 font-medium'
-                      : 'text-zinc-700 hover:bg-zinc-50'
+                      ? 'bg-[#fbe7b2] text-[#4b3600] font-medium'
+                      : 'text-[#7a5b00] hover:bg-[#fff1c9]'
                   )}
                 >
                   {localeNames[locale]}

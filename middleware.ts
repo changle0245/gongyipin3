@@ -25,6 +25,26 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (segments[1] === 'admin') {
+    const isLoginRoute = segments[2] === 'login';
+    const authCookie = request.cookies.get('admin-auth');
+
+    if (!authCookie && !isLoginRoute) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${maybeLocale}/admin/login`;
+      if (pathname !== `/${maybeLocale}/admin/login`) {
+        url.searchParams.set('redirect', pathname);
+      }
+      return NextResponse.redirect(url);
+    }
+
+    if (authCookie && isLoginRoute) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${maybeLocale}/admin/upload`;
+      return NextResponse.redirect(url);
+    }
+  }
+
   return NextResponse.next();
 }
 

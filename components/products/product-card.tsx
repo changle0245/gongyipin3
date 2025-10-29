@@ -23,9 +23,9 @@ export function ProductCard({ product, locale, onAddToQuote, labels }: ProductCa
   const lang = locale as 'en' | 'zh' | 'ar';
 
   return (
-    <Card className="group overflow-hidden hover:shadow-lg transition-shadow">
+    <Card className="group overflow-hidden transition-shadow hover:shadow-xl">
       <Link href={`/${locale}/products/${product.id}`}>
-        <div className="relative aspect-square overflow-hidden bg-gray-100">
+        <div className="relative aspect-square overflow-hidden bg-[#fff3c4]">
           {product.images && product.images.length > 0 ? (
             <Image
               src={product.images[0]}
@@ -35,7 +35,7 @@ export function ProductCard({ product, locale, onAddToQuote, labels }: ProductCa
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400">
+            <div className="flex h-full w-full items-center justify-center text-[#c2932a]">
               No Image
             </div>
           )}
@@ -51,21 +51,21 @@ export function ProductCard({ product, locale, onAddToQuote, labels }: ProductCa
 
       <CardContent className="p-4">
         <Link href={`/${locale}/products/${product.id}`}>
-          <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+          <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-[#4b3600] transition-colors hover:text-[#b87f09]">
             {product.name[lang]}
           </h3>
         </Link>
-        <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+        <p className="mb-3 line-clamp-2 text-sm text-[#8a5b00]">
           {product.description[lang]}
         </p>
 
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-500">{labels.moq}</span>
-          <span className="font-medium">{product.specifications.moq}</span>
+          <span className="text-[#c2932a]">{labels.moq}</span>
+          <span className="font-medium text-[#5c3b00]">{product.specifications.moq}</span>
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex gap-2">
+      <CardFooter className="flex gap-2 p-4 pt-0">
         <Button asChild className="flex-1" variant="outline">
           <Link href={`/${locale}/products/${product.id}`}>
             {labels.viewDetails}

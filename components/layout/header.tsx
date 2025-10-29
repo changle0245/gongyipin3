@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from '@/i18n/translation-context';
-import { ShoppingCart, Search, Menu } from 'lucide-react';
+import { ShoppingCart, Search, Menu, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { LanguageSwitcher } from './language-switcher';
@@ -28,14 +28,14 @@ export function Header({ locale, quoteCount = 0 }: HeaderProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-50 w-full border-b border-[#f4c36a]/60 bg-gradient-to-r from-[#fff3c4]/90 via-[#f8d77f]/90 to-[#f0b748]/90 backdrop-blur supports-[backdrop-filter]:bg-[#f8d77f]/75">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center space-x-2">
-            <div className="text-2xl font-bold">
-              <span className="text-zinc-900">Metal</span>
-              <span className="text-zinc-600">Crafts</span>
+            <div className="text-2xl font-bold text-[#5c3b00]">
+              <span className="text-[#d6960b]">Golden</span>
+              <span className="text-[#5c3b00]">Crafts</span>
             </div>
           </Link>
 
@@ -46,10 +46,10 @@ export function Header({ locale, quoteCount = 0 }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-zinc-900',
+                  'text-sm font-medium transition-colors hover:text-[#5c3b00]',
                   pathname === item.href
-                    ? 'text-zinc-900'
-                    : 'text-zinc-600'
+                    ? 'text-[#5c3b00]'
+                    : 'text-[#8a5b00]'
                 )}
               >
                 {item.name}
@@ -84,6 +84,17 @@ export function Header({ locale, quoteCount = 0 }: HeaderProps) {
             {/* Language Switcher */}
             <LanguageSwitcher currentLocale={locale} />
 
+            <Button
+              variant="outline"
+              className="hidden md:inline-flex border-[#fbe29f] bg-white/80 text-[#7a4c00] hover:bg-white"
+              asChild
+            >
+              <Link href={`/${locale}/admin/login`}>
+                <Shield className="mr-2 h-4 w-4" />
+                {t('auth.adminPortal')}
+              </Link>
+            </Button>
+
             {/* Mobile Menu Button */}
             <Button
               variant="ghost"
@@ -107,14 +118,21 @@ export function Header({ locale, quoteCount = 0 }: HeaderProps) {
                   className={cn(
                     'text-sm font-medium px-2 py-1 rounded-md transition-colors',
                     pathname === item.href
-                      ? 'bg-zinc-100 text-zinc-900'
-                      : 'text-zinc-600 hover:bg-zinc-50'
+                      ? 'bg-[#fbe7b2] text-[#5c3b00]'
+                      : 'text-[#8a5b00] hover:bg-[#fdf1cc]'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href={`/${locale}/admin/login`}
+                className="text-sm font-medium px-2 py-2 rounded-md bg-gradient-to-r from-[#f4c36a] to-[#d6960b] text-white text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('auth.adminPortal')}
+              </Link>
             </nav>
           </div>
         )}

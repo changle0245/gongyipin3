@@ -87,5 +87,21 @@
     "glassIronFruitPlate": "طبق فواكه من الزجاج والحديد",
     "ironDiningTable": "طاولة طعام من الحديد",
     "ironOrnaments": "زينة من الحديد"
+  },
+  "auth": {
+    "adminPortal": "تسجيل دخول المسؤول",
+    "loginTitle": "تسجيل دخول المسؤول",
+    "loginSubtitle": "استخدم بيانات الاعتماد المصرح بها لإدارة قائمة المنتجات",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "usernamePlaceholder": "أدخل اسم المستخدم",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "loggingIn": "جاري تسجيل الدخول...",
+    "invalidCredentials": "اسم المستخدم أو كلمة المرور غير صحيح.",
+    "networkError": "خطأ في الشبكة. حاول مرة أخرى.",
+    "goToDashboard": "لوحة التحكم",
+    "backToSite": "العودة إلى الموقع",
+    "logout": "تسجيل الخروج"
   }
 }

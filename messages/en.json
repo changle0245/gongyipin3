@@ -80,5 +80,21 @@
     "contact": "Contact Information",
     "quickLinks": "Quick Links",
     "followUs": "Follow Us"
+  },
+  "auth": {
+    "adminPortal": "Admin Login",
+    "loginTitle": "Administrator Sign In",
+    "loginSubtitle": "Use the credentials provided to manage your product catalog",
+    "username": "Username",
+    "password": "Password",
+    "usernamePlaceholder": "Enter admin username",
+    "passwordPlaceholder": "Enter password",
+    "signIn": "Sign In",
+    "loggingIn": "Signing In...",
+    "invalidCredentials": "Invalid username or password.",
+    "networkError": "Network error. Please try again.",
+    "goToDashboard": "Dashboard",
+    "backToSite": "Back to site",
+    "logout": "Sign Out"
   }
 }
