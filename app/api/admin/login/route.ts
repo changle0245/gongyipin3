@@ -1,27 +1,23 @@
 import { NextResponse } from 'next/server';
 
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME ?? 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? 'craftgold';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? 'admin@example.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? 'admin123';
 
 export async function POST(request: Request) {
-  const { username, password } = await request.json().catch(() => ({ username: '', password: '' }));
+  const { email, password } = await request.json();
 
-  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-    const response = NextResponse.json({ success: true });
-    response.cookies.set({
-      name: 'admin-auth',
-      value: 'authenticated',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 8,
-    });
-    return response;
+  if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+    return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
   }
 
-  return NextResponse.json(
-    { success: false, message: 'Invalid credentials' },
-    { status: 401 }
-  );
+  const response = NextResponse.json({ ok: true });
+  response.cookies.set('admin-auth', 'true', {
+    httpOnly: true,
+    maxAge: 60 * 60 * 6,
+    path: '/',
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  });
+
+  return response;
 }

@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    --background: 43 100% 96%;
-    --foreground: 35 100% 15%;
-    --card: 43 100% 98%;
-    --card-foreground: 32 96% 18%;
-    --popover: 45 96% 95%;
-    --popover-foreground: 32 96% 18%;
-    --primary: 38 90% 46%;
-    --primary-foreground: 43 100% 97%;
-    --secondary: 45 92% 88%;
-    --secondary-foreground: 32 96% 24%;
-    --muted: 45 84% 92%;
-    --muted-foreground: 35 64% 32%;
-    --accent: 45 84% 90%;
-    --accent-foreground: 28 76% 22%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 43 84% 80%;
-    --input: 43 84% 80%;
-    --ring: 38 90% 46%;
-    --radius: 0.5rem;
+    --background: 42 90% 97%;
+    --foreground: 32 56% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 32 56% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 32 56% 14%;
+    --primary: 37 92% 45%;
+    --primary-foreground: 45 100% 98%;
+    --secondary: 42 73% 92%;
+    --secondary-foreground: 32 56% 14%;
+    --muted: 42 73% 92%;
+    --muted-foreground: 32 30% 40%;
+    --accent: 37 85% 55%;
+    --accent-foreground: 45 100% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 45 100% 98%;
+    --border: 42 48% 80%;
+    --input: 42 48% 80%;
+    --ring: 37 92% 45%;
+    --radius: 0.75rem;
   }
 }
 
@@ -32,11 +32,13 @@
     border-color: hsl(var(--border));
   }
   body {
-    @apply bg-[#fff7e1] text-[#3f2c00];
-    background-image: radial-gradient(circle at 20% 20%, rgba(255, 225, 161, 0.6), transparent 55%),
-      radial-gradient(circle at 80% 0%, rgba(255, 196, 102, 0.4), transparent 45%),
-      linear-gradient(180deg, rgba(255, 248, 221, 0.8), rgba(255, 239, 191, 0.9));
-    background-attachment: fixed;
+    @apply min-h-screen bg-[#fff9eb] text-[#4b3600];
+    background-image: radial-gradient(circle at top left, rgba(247, 224, 146, 0.45), transparent 55%),
+      radial-gradient(circle at top right, rgba(255, 209, 92, 0.35), transparent 50%),
+      radial-gradient(circle at bottom, rgba(240, 198, 86, 0.25), transparent 55%);
+  }
+  a {
+    @apply text-[#b67900] hover:text-[#8c5800];
   }
 }
 

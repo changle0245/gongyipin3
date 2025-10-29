@@ -5,7 +5,6 @@ import { defaultLocale, isLocale } from './i18n/request';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 允许 Next.js 静态资源与 API 请求直接通过
   if (pathname.startsWith('/_next') || pathname.startsWith('/api') || pathname.includes('.')) {
     return NextResponse.next();
   }
@@ -26,19 +25,17 @@ export function middleware(request: NextRequest) {
   }
 
   if (segments[1] === 'admin') {
-    const isLoginRoute = segments[2] === 'login';
-    const authCookie = request.cookies.get('admin-auth');
+    const isLoginPage = segments[2] === 'login';
+    const hasAuth = request.cookies.get('admin-auth');
 
-    if (!authCookie && !isLoginRoute) {
+    if (!hasAuth && !isLoginPage) {
       const url = request.nextUrl.clone();
       url.pathname = `/${maybeLocale}/admin/login`;
-      if (pathname !== `/${maybeLocale}/admin/login`) {
-        url.searchParams.set('redirect', pathname);
-      }
+      url.searchParams.set('returnTo', pathname);
       return NextResponse.redirect(url);
     }
 
-    if (authCookie && isLoginRoute) {
+    if (hasAuth && isLoginPage) {
       const url = request.nextUrl.clone();
       url.pathname = `/${maybeLocale}/admin/upload`;
       return NextResponse.redirect(url);

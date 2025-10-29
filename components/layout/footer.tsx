@@ -18,30 +18,24 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-[#5c3b00] via-[#7a4c00] to-[#3d2900] text-[#ffe8b8]">
+    <footer className="mt-16 bg-gradient-to-b from-[#fff2c2] via-[#ffe59a] to-[#f7c54a] text-[#4b3600]">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {/* Company Info */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
-              Golden Crafts
-            </h3>
-            <p className="mb-4 text-sm">
-              {t('home.description')}
-            </p>
+            <h3 className="mb-4 text-2xl font-extrabold text-[#3b2900]">GoldCrafts</h3>
+            <p className="text-sm text-[#7a5b00]">{t('home.description')}</p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
+            <h3 className="mb-4 text-lg font-semibold text-[#3b2900]">
               {t('footer.quickLinks')}
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm text-[#7a5b00]">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[#ffe8b8] transition-colors hover:text-white"
+                    className="transition-colors hover:text-[#b67900]"
                   >
                     {link.name}
                   </Link>
@@ -50,20 +44,19 @@ export function Footer({ locale }: FooterProps) {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-[#ffd36b]">
+            <h3 className="mb-4 text-lg font-semibold text-[#3b2900]">
               {t('footer.contact')}
             </h3>
-            <div className="space-y-2 text-sm">
-              <p>Email: info@metalcrafts.com</p>
-              <p>WeChat: metalcrafts</p>
+            <div className="space-y-2 text-sm text-[#7a5b00]">
+              <p>Email: gold@goldcrafts.com</p>
+              <p>WeChat: goldcrafts</p>
               <p>WhatsApp: +86 123 4567 8900</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-[#8a5b00] pt-8 text-center text-sm text-[#ffe8b8]">
+        <div className="mt-12 rounded-3xl bg-white/70 p-4 text-center text-sm text-[#7a5b00] shadow-inner shadow-[#f7d686]/50">
           <p>{t('footer.copyright')}</p>
         </div>
       </div>

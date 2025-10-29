@@ -9,7 +9,9 @@
     "language": "语言",
     "addToQuote": "加入询价",
     "viewDetails": "查看详情",
-    "loadMore": "加载更多"
+    "loadMore": "加载更多",
+    "quote": "询价清单",
+    "requestQuote": "提交询价"
   },
   "home": {
     "title": "金属工艺品",
@@ -17,7 +19,9 @@
     "description": "我们专注于高质量金属工艺品，拥有500多种独特设计",
     "featuredProducts": "精选产品",
     "allCategories": "所有分类",
-    "browseByCategory": "按分类浏览"
+    "browseByCategory": "按分类浏览",
+    "ctaTitle": "准备开始下单了吗？",
+    "ctaDescription": "联系我们获取免费报价，我们会帮助你找到最合适的金属工艺品。"
   },
   "product": {
     "specifications": "产品规格",
@@ -73,28 +77,47 @@
     "aiTemplate": "AI 模板",
     "emailConfig": "邮箱配置",
     "productManagement": "产品管理",
-    "viewQuotes": "查看询价"
+    "viewQuotes": "查看询价",
+    "loginLink": "后台登录",
+    "loginTitle": "管理员登录",
+    "loginDescription": "使用管理员账号密码登录管理后台。",
+    "email": "邮箱",
+    "password": "密码",
+    "loginButton": "登录",
+    "loggingIn": "正在登录…",
+    "loginHint": "默认账号：admin@example.com / admin123（可在环境变量中修改）",
+    "portal": "后台中心",
+    "dashboardTitle": "金灿工坊控制台",
+    "uploadNav": "上传与 AI 助手",
+    "loggingOut": "正在退出…",
+    "logout": "退出登录",
+    "files": "个待处理文件",
+    "autoPublishOn": "自动发布：开启",
+    "autoPublishOff": "自动发布：关闭",
+    "processing": "处理中…",
+    "startProcessing": "开始 AI 处理",
+    "queue": "处理队列",
+    "queueDescription": "查看每张图片的处理进度与 AI 结果。",
+    "status": {
+      "pending": "待处理",
+      "processing": "处理中",
+      "success": "已完成",
+      "error": "失败"
+    },
+    "remove": "移除",
+    "aiSummary": "AI 生成摘要",
+    "aiSummaryHint": "在发布前先核对 AI 输出内容。",
+    "aiEmpty": "处理完成后，AI 摘要会显示在这里。",
+    "notes": "使用提示",
+    "notesDescription": "上传新产品时请注意以下事项。",
+    "note1": "尽量使用背景干净、清晰的图片，有助于 AI 识别。",
+    "note2": "发布前请再次确认 AI 文案内容是否准确。",
+    "note3": "如需人工审核，请先关闭自动发布功能。"
   },
   "footer": {
     "copyright": "© 2024 金属工艺品。保留所有权利。",
     "contact": "联系方式",
     "quickLinks": "快速链接",
     "followUs": "关注我们"
-  },
-  "auth": {
-    "adminPortal": "管理员登录",
-    "loginTitle": "管理员登录",
-    "loginSubtitle": "请输入授权账号以管理产品目录",
-    "username": "用户名",
-    "password": "密码",
-    "usernamePlaceholder": "请输入管理员用户名",
-    "passwordPlaceholder": "请输入密码",
-    "signIn": "登录",
-    "loggingIn": "正在登录...",
-    "invalidCredentials": "用户名或密码错误。",
-    "networkError": "网络错误，请稍后重试。",
-    "goToDashboard": "管理面板",
-    "backToSite": "返回网站",
-    "logout": "退出登录"
   }
 }

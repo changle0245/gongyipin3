@@ -13,7 +13,6 @@ export default async function HomePage({ params: { locale } }: { params: { local
   const products = getAllProducts();
   const categories = getCategories();
 
-  // 每个分类显示最多4个产品
   const featuredProducts = products.slice(0, 12);
   const productCardLabels = {
     moq: t('product.moq'),
@@ -23,26 +22,29 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#f9e39a] via-[#f4c36a] to-[#d6960b] py-20 text-[#422d00]">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#ffefc1] via-[#ffe29a] to-[#f5c454] py-20 text-[#4b3600]">
+        <div className="absolute inset-0 -z-10 bg-[url('https://www.transparenttextures.com/patterns/gplay.png')] opacity-10" />
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="mb-6 text-4xl font-bold md:text-5xl text-[#3f2c00]">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="mx-auto mb-6 bg-white/70 text-[#b67900]">{t('home.subtitle')}</Badge>
+            <h1 className="mb-6 text-4xl font-extrabold md:text-5xl">
               {t('home.title')}
             </h1>
-            <p className="mb-4 text-xl text-[#6b4700] md:text-2xl">
-              {t('home.subtitle')}
-            </p>
-            <p className="mb-8 text-lg text-[#7a5b00]">
+            <p className="mb-4 text-xl text-[#7a5b00]">
               {t('home.description')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="bg-white text-[#7a4c00] hover:bg-[#fff5d4]">
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button size="lg" asChild className="shadow-lg shadow-[#f7d686]/60">
                 <Link href={`/${locale}/products`}>
                   {t('common.products')}
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="border-white text-[#422d00] hover:bg-white/30">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="border-[#f3d27a] bg-white/60 text-[#8c5800] backdrop-blur hover:bg-white/80"
+              >
                 <Link href={`/${locale}/contact`}>
                   {t('common.contact')}
                 </Link>
@@ -52,29 +54,28 @@ export default async function HomePage({ params: { locale } }: { params: { local
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="bg-[#fff5dc]/80 py-16">
+      <section className="bg-[#fff7d9] py-16">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold text-[#4b3600]">{t('home.browseByCategory')}</h2>
-            <p className="text-[#8a5b00]">{t('home.allCategories')}</p>
+            <h2 className="mb-4 text-3xl font-bold text-[#3b2900]">{t('home.browseByCategory')}</h2>
+            <p className="text-[#8c5800]">{t('home.allCategories')}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
             {categories.map((category) => (
               <Link
                 key={category.id}
                 href={`/${locale}/category/${category.slug}`}
                 className="group"
               >
-                <div className="rounded-2xl border border-[#f3c572] bg-white/90 p-6 text-center transition-shadow hover:shadow-xl">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff0c9] text-2xl text-[#c2932a] transition-all group-hover:bg-[#d6960b] group-hover:text-white">
+                <div className="rounded-3xl border border-[#f3d27a] bg-white/80 p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff0bd] text-2xl text-[#b67900] transition group-hover:bg-[#f5c454] group-hover:text-[#3b2900]">
                     🏺
                   </div>
                   <h3 className="mb-2 font-semibold text-[#4b3600]">
                     {category.name[locale as 'en' | 'zh' | 'ar']}
                   </h3>
-                  <p className="text-sm text-[#8a5b00] line-clamp-2">
+                  <p className="text-sm text-[#8c5800]">
                     {category.description[locale as 'en' | 'zh' | 'ar']}
                   </p>
                 </div>
@@ -84,17 +85,16 @@ export default async function HomePage({ params: { locale } }: { params: { local
         </div>
       </section>
 
-      {/* Featured Products Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h2 className="mb-2 text-3xl font-bold text-[#4b3600]">{t('home.featuredProducts')}</h2>
-              <p className="text-[#8a5b00]">
+              <h2 className="mb-2 text-3xl font-bold text-[#3b2900]">{t('home.featuredProducts')}</h2>
+              <p className="text-[#8c5800]">
                 {products.length}+ {t('common.products')}
               </p>
             </div>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="border-[#f3d27a] bg-white/70 text-[#8c5800]">
               <Link href={`/${locale}/products`}>
                 {t('common.viewDetails')}
               </Link>
@@ -113,12 +113,12 @@ export default async function HomePage({ params: { locale } }: { params: { local
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <div className="mb-4 text-[#e5b347]">
-                <Search className="w-16 h-16 mx-auto" />
+            <div className="rounded-3xl border border-dashed border-[#f3d27a] bg-white/70 py-12 text-center">
+              <div className="mb-4 text-[#d89b00]">
+                <Search className="mx-auto h-16 w-16" />
               </div>
-              <p className="text-[#7a5b00]">No products available yet</p>
-              <p className="mt-2 text-sm text-[#8a5b00]">
+              <p className="text-lg font-medium text-[#4b3600]">No products available yet</p>
+              <p className="mt-2 text-sm text-[#8c5800]">
                 Upload products through the admin panel to get started
               </p>
             </div>
@@ -126,18 +126,15 @@ export default async function HomePage({ params: { locale } }: { params: { local
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-[#5c3b00] via-[#7a4c00] to-[#3d2900] py-16 text-[#ffe8b8]">
+      <section className="bg-gradient-to-r from-[#fbe49d] via-[#f7c54a] to-[#f0aa00] py-16 text-[#3b2900]">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-[#ffd36b]">
-            Ready to Start Your Order?
-          </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-[#ffe8b8]">
-            Contact us today for a free quote. We&apos;re here to help you find the perfect metal craft products for your needs.
+          <h2 className="mb-4 text-3xl font-bold">{t('home.ctaTitle')}</h2>
+          <p className="mx-auto mb-8 max-w-2xl text-lg text-[#5b3d00]">
+            {t('home.ctaDescription')}
           </p>
-          <Button size="lg" asChild className="bg-[#ffd36b] text-[#3d2900] hover:bg-[#f4c36a]">
+          <Button size="lg" asChild className="bg-[#3b2900] text-[#fbe49d] hover:bg-[#2c1e00]">
             <Link href={`/${locale}/quote`}>
-              Request a Quote
+              {t('common.requestQuote')}
             </Link>
           </Button>
         </div>

@@ -9,7 +9,9 @@
     "language": "Language",
     "addToQuote": "Add to Quote",
     "viewDetails": "View Details",
-    "loadMore": "Load More"
+    "loadMore": "Load More",
+    "quote": "Quote Cart",
+    "requestQuote": "Request a Quote"
   },
   "home": {
     "title": "Metal Craft Products",
@@ -17,7 +19,9 @@
     "description": "We specialize in high-quality metal craft products with over 500+ unique designs",
     "featuredProducts": "Featured Products",
     "allCategories": "All Categories",
-    "browseByCategory": "Browse by Category"
+    "browseByCategory": "Browse by Category",
+    "ctaTitle": "Ready to Start Your Order?",
+    "ctaDescription": "Contact us today for a free quote. We're here to help you find the perfect metal craft products for your needs."
   },
   "product": {
     "specifications": "Specifications",
@@ -73,28 +77,47 @@
     "aiTemplate": "AI Template",
     "emailConfig": "Email Configuration",
     "productManagement": "Product Management",
-    "viewQuotes": "View Quotes"
+    "viewQuotes": "View Quotes",
+    "loginLink": "Admin Login",
+    "loginTitle": "Admin Portal Login",
+    "loginDescription": "Sign in with your administrator credentials to access the dashboard.",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign in",
+    "loggingIn": "Signing in...",
+    "loginHint": "Default credentials: admin@example.com / admin123 (update in environment variables).",
+    "portal": "Admin Center",
+    "dashboardTitle": "GoldCrafts Control Panel",
+    "uploadNav": "Upload & AI Assistant",
+    "loggingOut": "Signing out...",
+    "logout": "Sign out",
+    "files": "files in queue",
+    "autoPublishOn": "Auto publish: ON",
+    "autoPublishOff": "Auto publish: OFF",
+    "processing": "Processing...",
+    "startProcessing": "Start AI Processing",
+    "queue": "Processing Queue",
+    "queueDescription": "Monitor progress and AI results for each upload.",
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "success": "Completed",
+      "error": "Failed"
+    },
+    "remove": "Remove",
+    "aiSummary": "AI Generated Summaries",
+    "aiSummaryHint": "Review AI output before sharing or editing.",
+    "aiEmpty": "AI summaries will appear here after processing completes.",
+    "notes": "Helpful Tips",
+    "notesDescription": "Keep these things in mind while uploading new products.",
+    "note1": "Use clear photos with plain backgrounds for best AI recognition.",
+    "note2": "Double-check AI descriptions before publishing to your store.",
+    "note3": "Switch off auto-publish to review drafts manually first."
   },
   "footer": {
     "copyright": "© 2024 Metal Craft Products. All rights reserved.",
     "contact": "Contact Information",
     "quickLinks": "Quick Links",
     "followUs": "Follow Us"
-  },
-  "auth": {
-    "adminPortal": "Admin Login",
-    "loginTitle": "Administrator Sign In",
-    "loginSubtitle": "Use the credentials provided to manage your product catalog",
-    "username": "Username",
-    "password": "Password",
-    "usernamePlaceholder": "Enter admin username",
-    "passwordPlaceholder": "Enter password",
-    "signIn": "Sign In",
-    "loggingIn": "Signing In...",
-    "invalidCredentials": "Invalid username or password.",
-    "networkError": "Network error. Please try again.",
-    "goToDashboard": "Dashboard",
-    "backToSite": "Back to site",
-    "logout": "Sign Out"
   }
 }
