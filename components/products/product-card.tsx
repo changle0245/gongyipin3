@@ -4,19 +4,22 @@ import { Product } from '@/lib/types';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useTranslations } from 'next-intl';
 
 interface ProductCardProps {
   product: Product;
   locale: string;
   onAddToQuote?: (productId: string) => void;
+  labels: {
+    moq: string;
+    viewDetails: string;
+    addToQuote: string;
+  };
 }
 
 /**
  * 产品卡片组件
  */
-export function ProductCard({ product, locale, onAddToQuote }: ProductCardProps) {
-  const t = useTranslations();
+export function ProductCard({ product, locale, onAddToQuote, labels }: ProductCardProps) {
   const lang = locale as 'en' | 'zh' | 'ar';
 
   return (
@@ -57,7 +60,7 @@ export function ProductCard({ product, locale, onAddToQuote }: ProductCardProps)
         </p>
 
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-500">{t('product.moq')}</span>
+          <span className="text-gray-500">{labels.moq}</span>
           <span className="font-medium">{product.specifications.moq}</span>
         </div>
       </CardContent>
@@ -65,7 +68,7 @@ export function ProductCard({ product, locale, onAddToQuote }: ProductCardProps)
       <CardFooter className="p-4 pt-0 flex gap-2">
         <Button asChild className="flex-1" variant="outline">
           <Link href={`/${locale}/products/${product.id}`}>
-            {t('common.viewDetails')}
+            {labels.viewDetails}
           </Link>
         </Button>
         {onAddToQuote && (
@@ -73,7 +76,7 @@ export function ProductCard({ product, locale, onAddToQuote }: ProductCardProps)
             onClick={() => onAddToQuote(product.id)}
             className="flex-1"
           >
-            {t('common.addToQuote')}
+            {labels.addToQuote}
           </Button>
         )}
       </CardFooter>

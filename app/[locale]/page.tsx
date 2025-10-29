@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getAllProducts } from '@/lib/data/products';
 import { getCategories } from '@/lib/data/categories';
 import { ProductCard } from '@/components/products/product-card';
@@ -6,14 +5,21 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
+import { getStaticTranslator } from '@/i18n/messages';
+import { type Locale } from '@/i18n/request';
 
-export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
-  const t = useTranslations();
+export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getStaticTranslator(locale as Locale);
   const products = getAllProducts();
   const categories = getCategories();
 
   // 每个分类显示最多4个产品
   const featuredProducts = products.slice(0, 12);
+  const productCardLabels = {
+    moq: t('product.moq'),
+    viewDetails: t('common.viewDetails'),
+    addToQuote: t('common.addToQuote')
+  };
 
   return (
     <div className="min-h-screen">
@@ -102,6 +108,7 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
                   key={product.id}
                   product={product}
                   locale={locale}
+                  labels={productCardLabels}
                 />
               ))}
             </div>

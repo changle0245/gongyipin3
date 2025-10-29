@@ -47,7 +47,9 @@
     "error": "Failed to send quote request. Please try again.",
     "productName": "Product",
     "quantity": "Quantity",
-    "remove": "Remove"
+    "remove": "Remove",
+    "uploadImage": "Upload Reference Image",
+    "uploadImageDesc": "Share inspiration images to help us understand your desired style"
   },
   "search": {
     "placeholder": "Search products...",
@@ -66,7 +68,12 @@
     "generating": "Generating product information with AI...",
     "review": "Review and Edit",
     "save": "Save Product",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "batchUpload": "Batch Upload",
+    "aiTemplate": "AI Template",
+    "emailConfig": "Email Configuration",
+    "productManagement": "Product Management",
+    "viewQuotes": "View Quotes"
   },
   "footer": {
     "copyright": "© 2024 Metal Craft Products. All rights reserved.",

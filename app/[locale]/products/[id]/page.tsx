@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
 import { getAllProducts, getProductById, getProductsByCategory } from '@/lib/data/products';
 import { ImageMagnifier } from '@/components/products/image-magnifier';
 import { ProductCard } from '@/components/products/product-card';
@@ -9,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
+import { getStaticTranslator } from '@/i18n/messages';
+import { type Locale } from '@/i18n/request';
 
 export async function generateStaticParams() {
   const products = getAllProducts();
@@ -17,12 +18,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ProductPage({
+export default async function ProductPage({
   params: { locale, id }
 }: {
   params: { locale: string; id: string }
 }) {
-  const t = useTranslations();
+  const t = await getStaticTranslator(locale as Locale);
   const product = getProductById(id);
 
   if (!product) {
@@ -33,6 +34,11 @@ export default function ProductPage({
   const relatedProducts = getProductsByCategory(product.category).filter(
     (p) => p.id !== product.id
   ).slice(0, 4);
+  const productCardLabels = {
+    moq: t('product.moq'),
+    viewDetails: t('common.viewDetails'),
+    addToQuote: t('common.addToQuote')
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -188,6 +194,7 @@ export default function ProductPage({
                   key={relatedProduct.id}
                   product={relatedProduct}
                   locale={locale}
+                  labels={productCardLabels}
                 />
               ))}
             </div>
